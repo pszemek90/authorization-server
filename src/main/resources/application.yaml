@@ -1,0 +1,33 @@
+server:
+  port: 9000
+logging:
+  level:
+    org.springframework.security: trace
+spring:
+  application:
+    name: Authorization Server
+  security:
+    user:
+      name: user
+      password: password
+    oauth2:
+      authorizationserver:
+        client:
+          api-gateway:
+            registration:
+              client-id: "api-gateway"
+              client-secret: "{noop}test"
+              client-authentication-methods:
+                - "client_secret_basic"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+                - "client_credentials"
+              redirect-uris:
+                - "http://localhost:8081/login/oauth2/code/api-gateway"
+              post-logout-redirect-uris:
+                - "http://localhost:8081/"
+              scopes:
+                - "openid"
+                - "profile"
+            require-authorization-consent: true

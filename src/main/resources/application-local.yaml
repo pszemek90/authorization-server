@@ -1,0 +1,13 @@
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          api-gateway:
+            registration:
+              redirect-uris:
+                - "http://localhost:8081/login/oauth2/code/api-gateway"
+              post-logout-redirect-uris:
+                - "http://localhost:8081"
+server:
+  port: 9000
